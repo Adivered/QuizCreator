@@ -1,0 +1,14 @@
+Quiz Name: Quiz
+
+Question #1: Whats up?
+	a) Good
+	b) There is more then one correct answer
+	c) All answers are wrong
+
+Question #2: Where i live?
+	a) israel
+	b) usa
+	c) germany
+	d) There is more then one correct answer
+	e) All answers are wrong
+
