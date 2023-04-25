@@ -7,9 +7,13 @@ public class Answer {
 	
 	// Methods
 	// Constructors	
+	public Answer(String answer) {
+		setAnswer(answer);
+	}
+	
 	public Answer(String answer, Boolean isCorrect) {
-		this.answer = answer;
-		this.isCorrect = isCorrect;
+		setAnswer(answer);
+		setIsCorrect(isCorrect);
 	}
 	
 	public String getAnswer() {
