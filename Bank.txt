@@ -1,5 +1,0 @@
-1,Bank,4,
-1,What is my name?,3,Adi,true,Guy,false,EDI,true,
-2,Where i live?,3,israel,true,usa,false,germany,false,
-3,where i am tomorrow?,2,home tel aviv,true,home karkur,false,
-4,Whats up?,1,Good,true,

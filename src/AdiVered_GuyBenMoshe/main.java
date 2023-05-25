@@ -12,5 +12,6 @@ public class main {
 		 */
 		Menu menu = new Menu();
 		menu.runMainMenu();
+
 	}
 }

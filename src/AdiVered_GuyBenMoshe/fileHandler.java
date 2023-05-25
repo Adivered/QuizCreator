@@ -5,25 +5,34 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class fileHandler {
+public class FileHandler {
+	// Members
 	private File file;
 	private Scanner scan;
 	private String fileName;
 	private StringBuilder content;
 	
-	public fileHandler(String fileName) throws IOException {
+	// Constructor
+	public FileHandler(String fileName) throws IOException {
 		this.fileName = fileName;
 		this.file = openFile(fileName);
 		this.content = new StringBuilder();
 	}
 	
+	// Methods
+	// Getters
+	
 	public String getFileName() {
 		return fileName;
 	}
 	
+	// Setters
+	
 	public void setFileName(String name) {
 		this.fileName = name;
 	}
+	
+	// Functions
 	
 	public File openFile(String fileName) throws FileNotFoundException {
 		return new File(fileName);

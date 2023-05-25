@@ -1,18 +1,23 @@
 package AdiVered_GuyBenMoshe;
 
-import AdiVered_GuyBenMoshe.Question.Difficulity;
-import AdiVered_GuyBenMoshe.Question.TypeOfQuestion;
-
-public class openQuestion extends Question {
+public class OpenQuestion extends Question {
 	// Members
 	private Answer answer;
 
-	public openQuestion(String questionText, TypeOfQuestion questionType, Difficulity difficulity){
-		super(questionText, questionType, difficulity);
+	public OpenQuestion(String questionText, Difficulity difficulity){
+		super(questionText, difficulity);
 	}
 	
 	public void addAnswer(String answer) {
 		this.answer = new Answer(answer);
+	}
+	
+	public Answer getAnswer() {
+		return answer;
+	}
+	
+	public String toString() {
+		return super.toString() + "Answer:\n" +  answer.getAnswer()  + "\n";
 	}
 
 }

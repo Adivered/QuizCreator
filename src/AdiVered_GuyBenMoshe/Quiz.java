@@ -28,23 +28,19 @@ public class Quiz {
 	 * questions are taken from bank
 	 */
 	
-	public Quiz(String quizName, int numberOfQuestions) {
+	public Quiz(String quizName, int numberOfQuestions) throws QuizNumberOfQuestionsOutOfRange {
 		setQuizName(quizName);
 		currentNumberOfQuestion = 0;
-		setQuizNumberOfQuestions(numberOfQuestions);
+		if (!setQuizNumberOfQuestions(numberOfQuestions)){
+			throw new QuizNumberOfQuestionsOutOfRange("Quiz number of questions out of range");
+		} 
 		allQuestions = new Question[MAX_NUMBER_OF_QUESTIONS];
 	}
 	
+	// Getters
+	
 	public String getQuizName() {
 		return quizName;
-	}
-	
-	public void setQuizName(String newName) {
-		quizName = newName;
-	}
-	
-	public int getCurrentNumberOfQuestions() {
-		return currentNumberOfQuestion;
 	}
 	
 	public int getTotalNumberOfQuestions() {
@@ -56,7 +52,7 @@ public class Quiz {
 	}
 	
 	public boolean setQuizNumberOfQuestions(int newNumber) {
-		if (newNumber < MAX_NUMBER_OF_QUESTIONS) {
+		if (newNumber <= MAX_NUMBER_OF_QUESTIONS) {
 			totalNumberOfQuestions = newNumber;
 			return true;
 		}
@@ -67,9 +63,23 @@ public class Quiz {
 		return allQuestions;
 	}
 	
+	 // Setters
+	
+	public void setQuizName(String newName) {
+		quizName = newName;
+	}
+	
+	public int getCurrentNumberOfQuestions() {
+		return currentNumberOfQuestion;
+	}
+	
 	//Functions:
 	
-	public void addQuestion(Question question) {
+	public void addQuestion(Question question) throws QuestionWithLessThanThreeAnswers {
+		if (question instanceof ClosedQuestion) {
+			if(((ClosedQuestion)question).getCurrentNumberOfAnswers() < 4)
+				throw new QuestionWithLessThanThreeAnswers("Cant add a Closed Question with less than three answers");
+		}
 		allQuestions[currentNumberOfQuestion++] = question;
 	}
 	
@@ -116,13 +126,19 @@ public class Quiz {
 		 * File name is by date using localDateTime and then calls saveQuizAnswers()
 		 */
 		timeNow = getLocalDate();
-		fileHandler quizToText = new fileHandler(quizName + "_exam_" + timeNow + ".txt");
+		FileHandler quizToText = new FileHandler(quizName + "_exam_" + timeNow + ".txt");
 		quizToText.addToFile("Quiz Name: " + quizName + "\n\n");
 		for (int i = 0; i < currentNumberOfQuestion; i++) {
 			quizToText.addToFile( "Question #"+ (i+1) + ": " + allQuestions[i].getQuestionText() + "\n");
-			for (int j = 0; j < allQuestions[i].getCurrentNumberOfAnswers(); j++) {
-				quizToText.addToFile( "\t"+ (char)('a' + j) + ") " + (allQuestions[i].getAnswers())[j].getAnswer() + "\n");
+			if (allQuestions[i] instanceof OpenQuestion) {
+				quizToText.addToFile( "\tAnswer Here: ____________________________\n");
+			} else if (allQuestions[i] instanceof ClosedQuestion) {
+				ClosedQuestion closedQuestion = (ClosedQuestion)allQuestions[i];
+				for (int j = 0; j < closedQuestion.getCurrentNumberOfAnswers(); j++) {
+					quizToText.addToFile( "\t"+ (char)('a' + j) + ") " + (closedQuestion.getAnswers())[j].getAnswer() + "\n");
+				}
 			}
+
 			quizToText.addToFile("\n");
 		}
 		quizToText.saveFile();
@@ -133,13 +149,21 @@ public class Quiz {
 		/*
 		 * This function saves quiz answers into a new text file, using fileHandler class
 		 */
-		fileHandler answersToText = new fileHandler(quizName + "_solutions_" + timeNow + ".txt");
+		FileHandler answersToText = new FileHandler(quizName + "_solutions_" + timeNow + ".txt");
 		for (int i = 0; i < currentNumberOfQuestion; i++) {
 			answersToText.addToFile((i+1) + ") " + allQuestions[i].getQuestionText() + "\n");
-			for (int j = 0; j < allQuestions[i].getCurrentNumberOfAnswers(); j++) {
-				if(allQuestions[i].getAnswers()[j].getIsCorrect())
-					answersToText.addToFile((char)('a' + j) + ", ");
+			if (allQuestions[i] instanceof OpenQuestion) {
+				OpenQuestion openQuestion = (OpenQuestion)allQuestions[i];
+				answersToText.addToFile("Answer: " + openQuestion.getAnswer().getAnswer() + "\n");
+			} else if (allQuestions[i] instanceof ClosedQuestion) {
+				ClosedQuestion closedQuestion = (ClosedQuestion)allQuestions[i];
+				answersToText.addToFile("Answers: ");
+				for (int j = 0; j < closedQuestion.getCurrentNumberOfAnswers(); j++) {
+					if(closedQuestion.getAnswers()[j].getIsCorrect())
+						answersToText.addToFile((char)('a' + j) + ", ");
+				}
 			}
+
 			answersToText.addToFile("\n");
 		}
 		answersToText.saveFile();
@@ -147,7 +171,8 @@ public class Quiz {
 	
 	public void addDefultAnswersToQuestions() {
 		for (int i = 0; i < currentNumberOfQuestion; i++) {
-			allQuestions[i].addDefultAnswers();
+			if (allQuestions[i] instanceof ClosedQuestion)
+			((ClosedQuestion)allQuestions[i]).addDefultAnswers();
 		}
 	}
 	

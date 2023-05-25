@@ -1,3 +1,0 @@
-1,exam,2,
-1,what is my name?,0,
-2,what is my name?,1,omri,true,

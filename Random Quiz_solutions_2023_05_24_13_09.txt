@@ -1,0 +1,9 @@
+1) How many years do we study cs?
+Answers: e, 
+2) Which college do we go to?
+Answers: a, 
+3) What is your name?
+Answer: Adi
+
+4) Who wrote this project?
+Answers: a, 
