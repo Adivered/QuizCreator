@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 public class QuestionWithLessThanThreeAnswers extends Exception{
 

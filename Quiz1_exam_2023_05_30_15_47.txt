@@ -1,0 +1,60 @@
+Quiz Name: Quiz1
+
+Question #1: Who plays for the Warriors?
+	a) Kobe
+	b) GBM
+	c) Steph Curry
+	d) LeBron James
+	e) All answers are wrong
+
+Question #2: Who won the 2022 Championship?
+	a) Cavaliers
+	b) Lakers
+	c) Grizzlies
+	d) Celtics
+	e) All answers are wrong
+
+Question #3: How many minutes you play per quarter?
+	a) 12
+	b) 10
+	c) 11
+	d) 13
+	e) All answers are wrong
+
+Question #4: What is your favorite team?
+	Answer Here: ____________________________
+
+Question #5: Which team plays in Canada?
+	a) Timberwolves
+	b) Pacers
+	c) Mavericks
+	d) Raptors
+	e) All answers are wrong
+
+Question #6: Who's called the GOAT?
+	a) Kobe
+	b) Shaqile Oneal
+	c) Giannis
+	d) Michal Jordan
+	e) All answers are wrong
+
+Question #7: Have you ever played basketball?
+	Answer Here: ____________________________
+
+Question #8: Where do the Heats play?
+	a) New York
+	b) Georgia
+	c) California
+	d) Denver
+	e) All answers are wrong
+
+Question #9: Who is your favorite player?
+	Answer Here: ____________________________
+
+Question #10: Which of the following isn't an NBA team?
+	a) Nuggets
+	b) Celtics
+	c) Warriors
+	d) Maccabi TLV
+	e) All answers are wrong
+

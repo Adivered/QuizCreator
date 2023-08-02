@@ -1,9 +1,11 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 
 public class Menu {
 	// Finals
@@ -13,13 +15,14 @@ public class Menu {
 	private final int MAIN = -1;
 	private final int BANK = 1, ADD_NEW_QUESTION = 1, EDIT_QUESTION_TEXT = 1;
 	private final int LOAD_BANK = 2, REMOVE_QUESTION = 2, ADD_ANSWER = 2;
-	private final int CREATE_NEW_QUIZ = 3, EDIT_QUESTION_IN_BANK = 3, EDIT_ANSWER = 3;
-	private final int EDIT_QUESTION = 4, VIEW_BANK = 4, REMOVE_ANSWER = 4;
+	private final int EDIT_BANK = 3, EDIT_QUESTION_IN_BANK = 3, EDIT_ANSWER = 3;
+	private final int CREATE_NEW_QUIZ = 4, EDIT_QUESTION = 4, VIEW_BANK = 4, REMOVE_ANSWER = 4;
 	private final int SAVE_BANK = 5;
 	private final int EXIT = 0;
 
 	// Static Members
 	private Bank bank;
+	private Bank[] banks = new Bank[0];
 
 	// Members
 	private int selection;
@@ -49,12 +52,30 @@ public class Menu {
 					} catch (ClassNotFoundException e) {
 						System.out.println(e.getMessage());
 						InputReader.pressEnterToContinue();
+					} catch (InvalidClassException e) {
+						System.out.println("Couldn't load this bank");
+						InputReader.pressEnterToContinue();
+					}
+					break;
+					
+				case EDIT_BANK:
+					if(banks.length > 0) {
+						chooseBank();
+						handleBankSelection();
+					}else {
+						System.out.println("Please create or load a bank first");
+						InputReader.pressEnterToContinue();
 					}
 					break;
 
 				case CREATE_NEW_QUIZ:
-					if (bank != null) { // Bank exists
-							createNewQuiz();
+					if (banks.length != 0) { // Bank exists
+							chooseBank();
+							try {
+								createNewQuiz();
+							} catch (QuizNumberOfQuestionsOutOfRange e) {
+								System.out.println(e.getMessage());
+							}
 					} else { // Bank doesn't exist
 						System.out.println("Please Create or Load Question Bank first");
 						InputReader.pressEnterToContinue();
@@ -83,6 +104,7 @@ public class Menu {
 		 */
 		String bankName = InputReader.readString("Enter Bank name:");
 		bank = new Bank(bankName);
+		addBank(bank);
 	}
 	
 	public void loadBank() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -93,7 +115,40 @@ public class Menu {
 		ObjectInputStream inBank = new ObjectInputStream(new FileInputStream(bankName));
 		bank  = (Bank)inBank.readObject();
 		inBank.close();
-		System.out.println(bankName + " has been loaded successfully!");
+		addBank(bank);
+	}
+	
+	public void printBanks() {
+		System.out.println("Banks:");
+		for (int i = 0; i < banks.length; i++) {
+			System.out.println((i+1) + ") " + banks[i].getBankName());
+		}
+		System.out.println();
+	}
+	
+	public void chooseBank() {
+		printBanks();
+		int choose;
+		while (true) {
+			choose = InputReader.readInt("Choose a bank from the list\n");
+			try {
+				bank = banks[choose-1];
+				return;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("choose option between 1-" + banks.length + "\n");
+			}
+		}
+	}
+	
+	public void addBank(Bank b) {
+		if(banks.length == 0) {
+			banks = new Bank[1];
+		}else {
+			banks = Arrays.copyOf(banks, banks.length+1);
+		}
+		banks[banks.length-1] = b;
+		
+		System.out.println("Bank added successfully");
 	}
 	
 	public void createQuestion() {
@@ -247,13 +302,15 @@ public class Menu {
 	
 	// QUIZ FUNCTIONS
 	
-	public void createNewQuiz() {
+	public void createNewQuiz() throws QuizNumberOfQuestionsOutOfRange {
+		String quizName = InputReader.readString("Enter Quiz Name:");
+		int numberOfQuestions = InputReader.readInt("How many questions?\n");
 		if (InputReader.readQuizType().equals("MANUAL")){
-			ManualQuiz manual = new ManualQuiz();
-			manual.createQuiz(bank);
+			ManualQuiz quiz = new ManualQuiz(quizName, numberOfQuestions);
+			quiz.createQuiz(bank);
 		} else {
-			AutomaticQuiz auto = new AutomaticQuiz();
-			auto.createQuiz(bank);
+			AutomaticQuiz quiz = new AutomaticQuiz(quizName, numberOfQuestions);
+			quiz.createQuiz(bank);
 		}
 	}
 
@@ -281,11 +338,12 @@ public class Menu {
 				System.out.println("Please select one of the following:");
 				System.out.println("1. Create New Question Bank");
 				System.out.println("2. Load Question Bank");
-				System.out.println("3. Create New Quiz");
+				System.out.println("3. Edit existing Bank");
+				System.out.println("4. Create New Quiz");
 				System.out.println("0. Exit");
 				break;
 				
-			case BANK, LOAD_BANK:
+			case BANK, LOAD_BANK, EDIT_BANK:
 				System.out.println("---BANK MENU---");
 				System.out.println("Please select one of the following:");
 				System.out.println("1. Add New Question");

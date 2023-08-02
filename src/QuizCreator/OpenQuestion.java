@@ -1,19 +1,22 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 public class OpenQuestion extends Question {
 	// Members
 	private Answer answer;
-
+	
+	//Constructor
 	public OpenQuestion(String questionText, Difficulity difficulity){
 		super(questionText, difficulity);
 	}
 	
-	public void addAnswer(String answer) {
-		this.answer = new Answer(answer);
-	}
-	
+	// Getters
 	public Answer getAnswer() {
 		return answer;
+	}
+	
+	// Functions
+	public void addAnswer(String answer) {
+		this.answer = new Answer(answer);
 	}
 	
 	public String toString() {

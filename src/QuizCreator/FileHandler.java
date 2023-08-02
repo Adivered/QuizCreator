@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

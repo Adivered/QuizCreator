@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,7 +25,7 @@ public class InputReader {
 	
 	public static Question.Difficulity readDifficulty(String prompt){
 		/*
-		 * Reads question difficulty from user
+		 * Reads Question difficulty from user
 		 */
 		while(true) {
 			System.out.println(prompt);
@@ -55,7 +55,7 @@ public class InputReader {
 	
 	public static String readQuizType() {
 		/*
-		 * Reads Question type from user
+		 * Reads Quiz type from user
 		 */
 		String type;
 		while (true) {

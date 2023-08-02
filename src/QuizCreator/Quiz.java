@@ -1,11 +1,11 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class Quiz {
+public abstract class Quiz {
 	// Finals
 	private final int MAX_NUMBER_OF_QUESTIONS = 10;
 	
@@ -15,7 +15,6 @@ public class Quiz {
 	private int totalNumberOfQuestions;
 	private Question[] allQuestions;
 	private String timeNow;
-	
 
 	// Methods:
 	// Constructors:
@@ -185,6 +184,8 @@ public class Quiz {
 		String ldt = t1.format(formatter);
         return ldt;
     }
+	
+	public abstract void generateQuiz() throws  CloneNotSupportedException, QuestionWithLessThanThreeAnswers;
 	
 	@Override
 	public String toString() {

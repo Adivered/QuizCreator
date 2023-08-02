@@ -1,0 +1,23 @@
+1) Who plays for the Warriors?
+Answers: e, 
+2) Who won the 2022 Championship?
+Answers: e, 
+3) How many minutes you play per quarter?
+Answers: e, 
+4) Where do the Heats play?
+Answers: b, 
+5) What is your favorite team?
+Answer: Lakers
+
+6) Which team plays in Canada?
+Answers: d, 
+7) Who is your favorite player?
+Answer: Write here
+
+8) Who's called the GOAT?
+Answers: a, 
+9) Which of the following isn't an NBA team?
+Answers: d, 
+10) Have you ever played basketball?
+Answer: yes
+

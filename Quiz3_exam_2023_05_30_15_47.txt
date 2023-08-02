@@ -1,0 +1,60 @@
+Quiz Name: Quiz3
+
+Question #1: What is your favorite team?
+	Answer Here: ____________________________
+
+Question #2: Which team plays in Canada?
+	a) Timberwolves
+	b) Pacers
+	c) Raptors
+	d) Mavericks
+	e) All answers are wrong
+
+Question #3: Who plays for the Warriors?
+	a) Doncic
+	b) LeBron James
+	c) Steph Curry
+	d) Kobe
+	e) All answers are wrong
+
+Question #4: Have you ever played basketball?
+	Answer Here: ____________________________
+
+Question #5: Who is your favorite player?
+	Answer Here: ____________________________
+
+Question #6: Which of the following isn't an NBA team?
+	a) Nuggets
+	b) Maccabi TLV
+	c) Warriors
+	d) Celtics
+	e) All answers are wrong
+
+Question #7: Who's called the GOAT?
+	a) Shaqile Oneal
+	b) Giannis
+	c) Kobe
+	d) Michal Jordan
+	e) All answers are wrong
+
+Question #8: Who won the 2022 Championship?
+	a) Grizzlies
+	b) Cavaliers
+	c) Lakers
+	d) Celtics
+	e) All answers are wrong
+
+Question #9: Where do the Heats play?
+	a) Chicago
+	b) California
+	c) Georgia
+	d) Denver
+	e) All answers are wrong
+
+Question #10: How many minutes you play per quarter?
+	a) 12
+	b) 11
+	c) 14
+	d) 13
+	e) All answers are wrong
+

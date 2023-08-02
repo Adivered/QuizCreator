@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.io.Serializable;
 
@@ -17,7 +17,6 @@ public class Answer implements Serializable {
 		setAnswer(answer);
 		setIsCorrect(isCorrect);
 	}
-	
 	// Methods
 	
 	// Getters

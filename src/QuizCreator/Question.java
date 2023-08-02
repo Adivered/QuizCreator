@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.io.Serializable;
 
@@ -55,7 +55,6 @@ public class Question implements Serializable {
 	public void setQuestionText(String newName) {
 		questionText = newName;
 	}
-	
 	
 	// Functions
 	public static void reduceCount() {

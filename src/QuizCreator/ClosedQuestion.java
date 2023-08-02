@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 public class ClosedQuestion extends Question implements Cloneable {
 	// Finals
@@ -14,7 +14,9 @@ public class ClosedQuestion extends Question implements Cloneable {
 	} 
 	
 	public ClosedQuestion clone() throws CloneNotSupportedException {
-		return (ClosedQuestion)super.clone();
+		ClosedQuestion clonedQuestion = (ClosedQuestion) super.clone();
+        clonedQuestion.allAnswers = this.allAnswers.clone();
+		return clonedQuestion;
 	}
 	
 	// Methods

@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,7 +33,7 @@ public class Bank implements Serializable {
 		currentNumberOfQuestions = 0;
 		allQuestions = new Question[MAX_NUMBER_OF_QUESTIONS];
 	}
-
+	
 	//Methods
 	
 	//GETTERS

@@ -1,4 +1,4 @@
-package AdiVered_GuyBenMoshe;
+package QuizCreator;
 
 public class QuizNumberOfQuestionsOutOfRange extends Exception{
 
